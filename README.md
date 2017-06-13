@@ -8,4 +8,4 @@ Author - Eugene Lityushkin 2017
 
 evgeny.lityushkin@gmail.com
 
-1. swap_prosmotr.sh -  вытаскивает процессы из swap в linux
+1. swap_prosmotr.sh -  listing most "swaping" process in linux
