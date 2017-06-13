@@ -2,7 +2,7 @@
 
 This is scripts and ansible playboks for lerning  linux
 
-All files, exceptions swap_prosmotr.sh  and movefromswap.sh  in this repository in Public Domain
+All files, exceptions swap_prosmotr.sh  and movefromswap.sh  licensed by GPL version 2.0 or higer
 
 Linux lessons - https://github.com/evgeny-lityushkin/Linux-lessons
 
