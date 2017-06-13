@@ -12,4 +12,4 @@
       shell: sudo -i service zabbix-agent status
 
     - name: grep config files
-      shell: sudo -i grep oets /etc/zabbix/zabbix_agentd.d/*.conf
+      shell: sudo -i grep {{server-name}} /etc/zabbix/zabbix_agentd.d/*.conf
