@@ -4,6 +4,8 @@ This is scripts and ansible playboks for lerning  linux
 
 All files, exceptions swap_prosmotr.sh  and movefromswap.sh  licensed by GPL version 2.0 or higer
 
+swap_prosmotr.sh  and movefromswap.sh  - orphan work 
+
 Linux lessons - https://github.com/evgeny-lityushkin/Linux-lessons
 
 Author - Eugene Lityushkin 2017
