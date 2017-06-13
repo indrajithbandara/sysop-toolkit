@@ -17,7 +17,8 @@ evgeny.lityushkin@gmail.com
 7.  deploy-ssh-key.yml -    deploy ssh key to remoute hosts
 8.  deploy-ssh-user.yml -   deploy user to remoute hosts
 9.  zabbix-update.yml -     update zabbix agent (and keep it config)
-10. 
+10. rm-bad-zabbix-config-after-agent-update.yml - remove bad zabbix agent configuration files after agent update
+
 
 
 
