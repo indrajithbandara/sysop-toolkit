@@ -8,9 +8,9 @@ Author - Eugene Lityushkin 2017
 
 evgeny.lityushkin@gmail.com
 
-1. swap_prosmotr.sh -   listing most "swaping" process in linux
-2. movefromswap.sh  -   move process from swap
-3. add-to-group.yml -   add linux user to any groups
-4.
+1.  swap_prosmotr.sh -    listing most "swaping" process in linux
+2.  movefromswap.sh  -    move process from swap
+3.  add-to-groups.yml -   add linux user to any groups
+4.  
 
 
