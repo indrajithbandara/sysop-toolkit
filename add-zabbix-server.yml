@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+      # Изменить имя папки с резервными копиями
+    - name: Make backup directory
+      shell: sudo -i mkdir /root/{{date}}												# Вставляем дату
+      # Изменить имя папки с резервными копиями
+    - name: Make backup copy of zabbix config file
+      shell: sudo -i cp /etc/zabbix/zabbix_agentd.d/* /root/{{date}}/									# Вставляем дату
+      # Изменить строку добавляемую в файл, и номера строк куда она добавляется.  Изменить имя редактируемого файла
+    - name: Editing config file 2
+      shell: sudo -i sed "1,2s/.*/&,{{server_name}}/" /etc/zabbix/zabbix_agentd.d/{{config_name}}.conf>/tmp/temp1.txt			# Изменяем имя сервера и название файла конфигурации
+      # Изменить имя редактируемого файла
+    - name: Copyng new config file 2
+      shell: sudo -i cp -f /tmp/temp.txt /etc/zabbix/zabbix_agentd.d/{{config_name}}.conf						# Изменяем имя файла конфигурации
+
+    - name: Restarting service new variant
+      shell: sudo -i systemctl restart zabbix-agentd

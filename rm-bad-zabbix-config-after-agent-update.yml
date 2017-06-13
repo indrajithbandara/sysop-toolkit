@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Make backup directory
+      shell: sudo -i rm -f /etc/zabbix/zabbix_agentd.d/*dpkg-new
+
+    - name: Restarting service new variant
+      shell: sudo -i service zabbix-agent restart

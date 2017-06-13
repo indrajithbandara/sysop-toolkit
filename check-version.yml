@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Editing config file 2
+      shell: sudo -i sed "1,2s/.*/&,{{server_name}}/" /etc/zabbix/zabbix_agentd.d/{{config_name}}.conf>/tmp/temp.txt
+
+    - name: Copyng new config file 2
+      shell: sudo -i cp -f /tmp/temp.txt /etc/zabbix/zabbix_agentd.d/{{config_name}}.conf
+
+    - name: Restarting service new variant
+      shell: sudo -i service zabbix-agentd restart zabbix-agentd
