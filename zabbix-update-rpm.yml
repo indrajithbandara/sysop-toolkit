@@ -1,0 +1,43 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+
+    - name: Make backup directory
+      shell: sudo -i mkdir /root/16-06-2017-10
+
+    - name: Make backup copy of zabbix config file
+      shell: sudo -i cp /etc/zabbix/zabbix_agentd.d/* /root/16-06-2017-10
+
+    - name: install the latest version of wget
+      yum:
+        name: wget
+        state: latest
+        #become: true
+
+    - name: get distrib file
+      shell: wget http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-agent-3.2.6-1.el7.x86_64.rpm
+
+    - name: remove old version of zabbix agent
+      shell: sudo rpm -e zabbix-agent-3.2.3-1.el7.x86_64
+
+    - name: install new version of zabbix agent
+      shell: sudo rpm -i zabbix-agent-3.2.6-1.el7.x86_64.rpm
+
+    - name: Editing config file step 1
+      shell: sudo -i sed '1,3d' /etc/zabbix/zabbix_agentd.d/rh-proxy.conf>/tmp/testm.txt
+
+    - name: Editing config file step 2
+      shell: sudo -i sed '1i Server=gate2-zabbix-proxy.gate2.orglot.office,zabbix-proxy1.tsed.orglot.office,zabbix-devops.gate2.orglot.office\n' /tmp/testm.txt >/tmp/testm2.txt
+
+    - name: Editing config file step 3
+      shell: sudo -i sed '2i ServerActive=gate2-zabbix-proxy.gate2.orglot.office,zabbix-proxy1.tsed.orglot.office,zabbix-devops.gate2.orglot.office\n' /tmp/testm2.txt >/tmp/testm3.txt
+
+    - name: Copyng config file
+      shell: sudo -i cp -n /tmp/testm3.txt /etc/zabbix/zabbix_agentd.d/rh-proxy.conf
+
+    - name: Copyng config file
+      shell: sudo -i rm -f /tmp/test{1,2,3}.txt
+
+    - name: Restarting service new variant
+      shell: sudo -i systemctl restart zabbix-agent #sudo -i systemctl restart zabbix-agentd

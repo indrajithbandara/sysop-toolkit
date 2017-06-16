@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  sudo: yes
   tasks:
       # Изменить имя папки с резервными копиями
     - name: Make backup directory
