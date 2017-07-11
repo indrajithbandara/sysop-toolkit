@@ -23,6 +23,9 @@ evgeny.lityushkin@gmail.com
 9.  zabbix-update.yml -     update zabbix agent (and keep it config)
 10. rm-bad-zabbix-config-after-agent-update.yml - remove bad zabbix agent configuration files after agent update
 11. deploy-application-file-to-remoute-hosts.yml - deploy applications files to remoute hosts
+12. auditd_tuning.sh  - tunned security in new system. Configure Auditd daemon
+13. 22.module.command_logging - configure logging of user command
+
 
 
 
