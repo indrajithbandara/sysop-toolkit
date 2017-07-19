@@ -1,0 +1,9 @@
+---
+ - hosts: all
+   user: root
+   sudo: yes
+   tasks:
+   - name: Update system
+     yum: name='*' state=latest
+   - name: Add user
+     action: user name={{user_name}} password={{passwords}} groups={{groups}}
