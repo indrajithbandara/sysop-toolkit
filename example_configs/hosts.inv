@@ -1,0 +1,2 @@
+localhost.localdomain1    ansible_host=localhost.localdomain1          ansible_user=root ansible_ssh_pass=P@ssw0rd
+localhost.localdomain1    ansible_host=localhost.localdomain2          ansible_user=root ansible_ssh_pass=P@ssw0rd
