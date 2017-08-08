@@ -31,30 +31,31 @@
     `
     arr=(`keytool -list -v -keystore $2 -storepass $password|egrep "Valid"|grep until|cut -c 53-80`)
     
-#    for ix in ${!arr[*]}
-#    do
-#        printf "%s\n" "${arr[$ix]}"
-#    done
+    export LANG=CP1251
+    export LANGUAGE=CP1251
+    export LC_TIME=en_US.utf8
+    
     
     current_date=`date +"%b %d %H:%M%:%S %Y %Z" --utc`			# Получаем текующую адту в "сыром виде"
-    current_date_y=`echo $current_date|cut -c 17-21`			# Получаем текущий год !Один символ убрать
+    current_date_y=`echo $current_date|cut -c 18-21`			# Получаем текущий год
     current_date_m=`echo $current_date|cut -c -4`			# Получаем текущий месяц
     current_date_d=`echo $current_day|cut -c 5-6`			# Получаем текущий день
     
     for iy in ${!arr[*]}
     do
-	cert_date_y=`echo ${arr[$iy]}|cut -c 21-25`
+	cert_date_y=`echo ${arr[$iy]}|cut -c 21-24`
 	cert_date_m=`echo ${arr[$iy]}|cut -c 1-3`
 	cert_date_d=`echo ${arr[$iy]}|cut -c 5-7`
-#	if [ $cert_date_y -eq $current_date_y ]				# Сравниваем год до которого валиден сертификато с текущим
-#	then if [ $cert_date_m -eq $current_date_m]			# Сравниваем месяц до которого валиден текущий сертификат с текущим
-#		then 
-#		if [ $cert_date_d+$1 -gt $current_date_d]		# Сравниваем дни. Из даты когда сертифкат протух вычитаем заданное первым аргументом значение
-#			then echo 1 && exit 1
-#			fi
-#		fi
-#	fi
-#	
-#	echo 0
-#	exit 0
-    done
+
+	if [ $cert_date_y == $current_date_y ]				# Сравниваем год до которого валиден сертификато с текущим
+	then 
+		if [ $cert_date_m == $current_date_m]			# Сравниваем месяц до которого валиден текущий сертификат с текущим
+		then 
+		if [ $cert_date_d+$1 -gt $current_date_d]		# Сравниваем дни. Из даты когда сертифкат протух вычитаем заданное первым аргументом значение
+			then echo 1 && exit 1
+			fi
+		fi
+	fi
+	echo 0
+	exit 0
+done
