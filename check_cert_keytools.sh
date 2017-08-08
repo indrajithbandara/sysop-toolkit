@@ -31,7 +31,7 @@
     `
     arr=(`keytool -list -v -keystore $2 -storepass $password|egrep "Valid"|grep until|cut -c 53-80`)
     
-    export LANG=CP1251
+    export LANG=CP1251							# Настраиваем нужную локаль для date
     export LANGUAGE=CP1251
     export LC_TIME=en_US.utf8
     
@@ -52,6 +52,12 @@
 		if [ $cert_date_m == $current_date_m]			# Сравниваем месяц до которого валиден текущий сертификат с текущим
 		then 
 		if [ $cert_date_d+$1 -gt $current_date_d]		# Сравниваем дни. Из даты когда сертифкат протух вычитаем заданное первым аргументом значение
+			then echo 1 && exit 1
+			fi
+		fi
+		if [ $current_date_m == "Dec" && $cert_date_m == "Jan" ]				# В декабре наш скрипт может дать сбой, поэтому проверяем не получается ли так что сертификат протухнет в начале следующего года
+		then
+			if [ $current_date_d+$1-31 -lt $cert_date_d ]					# Если текущая дата + период в днях - минус число дней в декабре меньше даты протухания - дело плохо
 			then echo 1 && exit 1
 			fi
 		fi
