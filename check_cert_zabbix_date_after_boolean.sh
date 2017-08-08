@@ -7,15 +7,15 @@
 #                                 Пример использования zabbix-cert-check.sh <дни> <хостнэйм:gjhn>                                                                                          #
 #                                                                                                                                                                                          #                                                                                                                                                                                          #
 ############################################################################################################################################################################################
-    
-    # Проверяем количество аргументов переданных скрипту. Как минимум нужно передать количество дней и название сервера с указанием порта, например altair-host10.localdomain:443 
+
+    # Проверяем количество аргументов переданных скрипту. Как минимум нужно передать количество дней и название сервера с указанием порта, например altair-host10.localdomain:443
     if [ $# -lt 2 ]; then
 	echo "Usage: zabbix-cert-check.sh <days> <url>"
     exit
     fi
-    
+
     export LC_TIME=en_US.utf8									# Устанавливаем правильную локаль
-    
+
     current_date=`date +"%b %d %H:%M%:%S %Y %Z" --utc`			# Получаем текующую адту в "сыром виде"
     current_date_y=`echo $current_date|cut -c 17-21`			# Получаем текущий год !Один символ убрать
     current_date_m=`echo $current_date|cut -c -4`			# Получаем текущий месяц
@@ -23,26 +23,33 @@
 
     # Используем OpenSSL для получения информации о сертификате
     cert_date=`openssl s_client -connect $2 2>/dev/null|sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'|openssl x509 -subject -noout -dates 2>/dev/null|grep After`
-    
+
     # Проверяем не произошл ли ошибка в процессе подключения к серверу
-    
+
     if [ -z "$cert_date" ]	# Если переменная неинициированна - значит, что то пошло не так
     then
 	echo "Connection to $1 error"
 	exit 1
     fi
-    
+
     cert_date_y=`echo $cert_date|cut -c 26-30`
     cert_date_m=`echo $cert_date|cut -c 10-13`
     cert_date_d=`echo $cert_date|cut -c 14-16`
-    
+
     if [ $cert_date_y -eq $current_date_y ]				# Сравниваем год до которого валиден сертификато с текущим
 	then if [ $cert_date_m -eq $current_date_m]			# Сравниваем месяц до которого валиден текущий сертификат с текущим
 	    then if [ $cert_date_d+$1 -gt $current_date_d]		# Сравниваем дни. Из даты когда сертифкат протух вычитаем заданное первым аргументом значение
 	    then echo 1 && exit 1
 	    fi
+      if [ $current_date_m == "Dec" && $cert_date_m == "Jan" ]				# В декабре наш скрипт может дать сбой, поэтому проверяем не получается ли так что сертификат протухнет в начале следующего года
+  		then
+  			if [ $current_date_d+$1-31 -lt $cert_date_d ]			# Если текущая дата + период в днях - минус число дней в декабре меньше даты протухания - дело плохо
+  			then echo 1 && exit 1
+  			fi
+  		fi
 	fi
     fi
-    
+
     echo 0
     exit 0
+
