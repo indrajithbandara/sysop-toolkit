@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Make backup directory
+      shell: sudo -i mkdir /root/09-06-2017
+
+    - name: Make backup copy of zabbix config file
+      shell: sudo -i cp /etc/zabbix/zabbix_agentd.d/* /root/09-06-2017/
+
+    - name: get distrib file
+      shell: wget http://repo.zabbix.com/zabbix/3.2/debian/pool/main/z/zabbix/zabbix-agent_3.2.6-1+jessie_amd64.deb
+
+    - name: install new version of zabbix agent
+      shell: sudo dpkg -i --force-confold zabbix-agent_3.2.6-1+jessie_amd64.deb
+
+    - name: Restarting service new variant
+      shell: sudo -i service zabbix-agent restart

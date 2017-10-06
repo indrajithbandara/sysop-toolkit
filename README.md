@@ -39,3 +39,4 @@ evgeny.lityushkin@gmail.com
 25. ./ipip - examples of script for ipip tunnel and script for keepalived
 26. ./keepalived - examples of configuration files of keepalived daemon
 27. ./zabbix - exampled of scripts and configuration files for  zabbix agent
+28. zabbix-update2.yml - simple playbook for update zabbix agents
