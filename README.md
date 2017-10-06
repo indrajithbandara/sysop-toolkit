@@ -24,18 +24,17 @@ evgeny.lityushkin@gmail.com
 10. rm-bad-zabbix-config-after-agent-update.yml - remove bad zabbix agent configuration files after agent update
 11. deploy-application-file-to-remoute-hosts.yml - deploy applications files to remoute hosts
 12. auditd_tuning.sh  - tunned security in new system. Configure Auditd daemon
-13. 22.module.command_logging - configure logging of user command
-14. zabbix-update-rpm.yml - simple playbook for update zabbix agents on rpm-based linux systems
-15. zabbix-update.yml - - simple playbook for update zabbix agents on deb-based linux systemd
-16. jks-certificate-expiry-checker.sh - Script for check certificates inside a java keystore
-17. sslcheck-expiry.bash - Simple SSL cert days-till-expiry check script by Glen Scott, www.glenscott.net
-18. sslcheck-issuer-cn.bash Simple SSL cert get-issuer-CN by Glen Scott
-19. sslcheck-issuer-o.bash # Simple SSL cert get-issuer-O by Glen Scott
-20. hosts.inv - simple example of ansible inventory file
-21. http.sh - simple http server with regulated latency
-22. bulk_reg_on_sat.sh - script for registration redhat based host on satellite
-23. user_command_logging.sh - script for conguration logging all user command to syslog
-24. ./backups/mysql/bin/backup.sh - simple script for backup mysql database
+13. zabbix-update-rpm.yml - simple playbook for update zabbix agents on rpm-based linux systems
+14. zabbix-update.yml - - simple playbook for update zabbix agents on deb-based linux systemd
+15. jks-certificate-expiry-checker.sh - Script for check certificates inside a java keystore
+16. sslcheck-expiry.bash - Simple SSL cert days-till-expiry check script by Glen Scott, www.glenscott.net
+17. sslcheck-issuer-cn.bash Simple SSL cert get-issuer-CN by Glen Scott
+18. sslcheck-issuer-o.bash # Simple SSL cert get-issuer-O by Glen Scott
+19. hosts.inv - simple example of ansible inventory file
+20. http.sh - simple http server with regulated latency
+21. bulk_reg_on_sat.sh - script for registration redhat based host on satellite
+22. user_command_logging.sh - script for conguration logging all user command to syslog
+23. ./backups/mysql/bin/backup.sh - simple script for backup mysql database
 24. ./galera - examples of configuration files of galera cluster
 25. ./ipip - examples of script for ipip tunnel and script for keepalived
 26. ./keepalived - examples of configuration files of keepalived daemon
