@@ -1,7 +1,0 @@
----
-- hosts: all
-  sudo: yes
-  tasks:
-
-  - name: Add Users to orglot
-    user: name={{username}} groups={{groups}} append=yes	# Группы перечисляем через запятую, без пробелов
