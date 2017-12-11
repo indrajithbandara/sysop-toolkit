@@ -40,3 +40,10 @@ evgeny.lityushkin@gmail.com
 26. ./keepalived - examples of configuration files of keepalived daemon
 27. ./zabbix - exampled of scripts and configuration files for  zabbix agent
 28. zabbix-update2.yml - simple playbook for update zabbix agents
+29. pg_hba.conf - example of postgresql config file. See last string
+30. postgres_down.sh - script for downgrade postgresql master server to slave
+31. postgresql_promout.sh -script for promoute postgresql slave server to master
+32. postgresql.conf - example pf postgresql config file
+33. recovery.conf - example pf postgresql config file
+34. recovery.done - example pf postgresql config file
+ 
